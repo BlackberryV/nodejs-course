@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signatures</title>
+</head>
+<body>
+<h1>Signatures</h1>
+<form action="/signatures/create" method="POST">
+    <label for="name">name:</label>
+    <input type="text" id="name" name="name"><br><br>
+    <label for="email">email:</label>
+    <input type="text" id="email" name="email"><br><br>
+    <label for="passportId">passport id:</label>
+    <input type="text" id="passportId" name="passportId"><br><br>
+    <button type="submit">Create</button>
+</form>
+
+<ul>
+    <% signatures.forEach(function(signature) { %>
+        <li>
+            <h2> <a href="/signatures/<%= signature.passportId%>"> passport id is  <%= signature.passportId %> </a></h2>
+            <p> name : <%= signature.name %></p>
+            <p> email : <%= signature.email %></p>
+            <form action="/signatures/delete/<%= signature.passportId%>" method="POST">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+    <% }); %>
+</ul>
+</body>
+</html>

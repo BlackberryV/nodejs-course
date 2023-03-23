@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= petition.title %></title>
+</head>
+<body>
+<center>
+<h1><%= petition.title %></h1>
+<p><%= petition.description %></p>
+<p>required amount of signatures: <%= petition.requiredAmountOfSignatures %></p>
+<p>Signatures: <%= petition.signatures.length %></p>
+<ul>
+    <% petition.signatures.forEach(function(signature) { %>
+        <li><%= signature.getName %></li>
+    <% }); %>
+</ul>
+</center>
+</body>
+</html>

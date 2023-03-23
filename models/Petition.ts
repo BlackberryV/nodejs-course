@@ -1,40 +1,53 @@
-import { Signature } from "./Signature";
+import {Signature} from "./Signature";
 
-class Petition {
-  private title: string;
-  private description: string;
-  private signatures: Signature[];
-  private requiredAnountOfSignatures: number;
+export class Petition {
 
-  constructor(
-    title: string,
-    description: string,
-    signatures: Signature[] = [],
-    requiredAnountOfSignatures: number
-  ) {
-    this.title = title;
-    this.description = description;
-    this.signatures = signatures;
-    this.requiredAnountOfSignatures = requiredAnountOfSignatures;
-  }
+    private title: string;
+    private description: string;
+    private signatures: Signature[];
+    private requiredAmountOfSignatures: number;
 
-  get getTitle(): string {
-    return this.title;
-  }
+    private id: number;
+    private static idGenerator=0;
 
-  get getDescription(): string {
-    return this.description;
-  }
+    constructor(
 
-  get getSignatures(): Signature[] {
-    return this.signatures;
-  }
+        title: string,
+        description: string,
+        requiredAmountOfSignatures: number
+    ) {
 
-  get getRequiredAnountOfSignatures(): number {
-    return this.requiredAnountOfSignatures;
-  }
+        this.id = Petition.idGenerator;
+        this.title = title;
+        this.description = description;
+        this.signatures = [];
+        this.requiredAmountOfSignatures = requiredAmountOfSignatures;
+        Petition.idGenerator=Petition.idGenerator+1;
+    }
 
-  addSignature(signature: Signature): void {
-    this.signatures.push(signature);
-  }
+    get getTitle(): string {
+        return this.title;
+    }
+
+    get getDescription(): string {
+        return this.description;
+    }
+
+    get getSignatures(): Signature[] {
+        return this.signatures;
+    }
+
+    get getRequiredAmountOfSignatures(): number {
+        return this.requiredAmountOfSignatures;
+    }
+
+    get getId(): number {
+        return this.id;
+    }
+
+    addSignature(signature: Signature): void {
+        this.signatures.push(signature);
+    }
+
+
 }
