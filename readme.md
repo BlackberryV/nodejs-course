@@ -1,32 +1,4 @@
-4 завдання : 
 
-Глушко Юлія :
-
-Задача 1 :
- посилання : https://www.codewars.com/kata/5262119038c0985a5b00029f
- вирішення :https://www.codewars.com/kata/reviews/5262119038c0985a5b0002a2/groups/640dafc11d50d200015d12e2
-
-Задача 2 :
- посилання : https://www.codewars.com/kata/59e9f404fc3c49ab24000112
- вирішення :https://www.codewars.com/kata/reviews/59e9f410e9faa0371e002088/groups/5a0268cfae0348825a000c54
-
-Задача 3 :
- посилання : https://www.codewars.com/kata/5f70c883e10f9e0001c89673
- вирішення :https://www.codewars.com/kata/reviews/5f7fc58e8649890001a029ff/groups/5f821105bd7f7c000167b7d1
-
-Якименко Вікторія :
-
-Задача 1 :
- посилання : 
- вирішення :
-
-Задача 2 :
- посилання : 
- вирішення :
-
-Задача 3 :
- посилання : 
- вирішення :
 Контрольні питання :
 
 1. Чи є різниця між виконанням JavaScript браузері та в середовищі Node.js?
