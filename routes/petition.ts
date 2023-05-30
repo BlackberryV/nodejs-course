@@ -11,18 +11,18 @@ import {
 const router = Router();
 
 // GET /api/v1/entity
-router.get('/entity', getPetitions);
+router.get('/api/v1/petition', getPetitions);
 
 // GET /api/v1/entity/:id
-router.get('/entity/:id', getEntityById);
+router.get('/api/v1/petition/:id', getEntityById);
 
 // POST /api/v1/entity
-router.post('/entity', create);
+router.post('/api/v1/petition', create);
 
 // DELETE /api/v1/entity/:id
-router.delete('/entity/:id', deletePetition);
+router.delete('/api/v1/petition/:id', deletePetition);
 
 // PUT /api/v1/entity/:id
-router.put('/entity/:id', updatePetition);
+router.put('/api/v1/petition/:id', updatePetition);
 
 export default router;

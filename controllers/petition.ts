@@ -32,21 +32,51 @@ export const getEntityById = async (req: Request, res: Response) => {
     return res.status(500).json("Something went wrong");
   }
 };
+
+
 export const getPetitions = async (req: Request, res: Response) => {
   try {
-    const filters = req.query; 
+    const page = parseInt(req.query.page as string) || 1;
+    const itemsPerPage = parseInt(req.query.items_per_page as string) || 10;
+    const filters = req.query;
 
-    if (Object.keys(filters).length > 0) {
-      const petitions = await getPetitionsWithFilter(filters);
-      return res.status(200).json(petitions);
+    if (filters.hasOwnProperty("page")) {
+      delete filters.page;
+    }
+    
+    if (filters.hasOwnProperty("items_per_page")) {
+      delete filters.items_per_page;
+    }
+
+   
+    if (Object.keys(filters).length > 0  ) {
+      const filteredPetitions = await getPetitionsWithFilter(filters);
+      const paginatedPetitions = paginate(filteredPetitions, page, itemsPerPage);
+      return res.status(200).json(paginatedPetitions);
     } else {
       const petitions = await getAllPetitions();
-      return res.status(200).json(petitions);
+      const paginatedPetitions = paginate(petitions, page, itemsPerPage);
+      return res.status(200).json(paginatedPetitions);
     }
   } catch (error) {
     console.error(error);
     return res.status(500).json("Something went wrong");
   }
+};
+
+const paginate = (items: any[], page: number, itemsPerPage: number) => {
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  const paginatedItems = items.slice(startIndex, endIndex);
+
+  const totalPages = Math.ceil(items.length / itemsPerPage);
+
+  return {
+    items: paginatedItems,
+    currentPage: page,
+    totalPages,
+  };
 };
 
 const getAllPetitions = async () => {
@@ -56,6 +86,11 @@ const getAllPetitions = async () => {
 const getPetitionsWithFilter = async (filters: any) => {
   return PetitionModel.find(filters);
 };
+
+
+
+
+
 
 export const deletePetition = async (req: Request, res: Response) => {
   try {

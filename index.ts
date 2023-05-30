@@ -1,10 +1,5 @@
 import express from "express";
 import mongoose from "mongoose";
-import * as UserController from "./controllers/user";
-import * as PetitionsController from "./controllers/petition";
-import { loginValidation, registerValidation } from "./validations/auth";
-import { petitionValidation } from "./validations/petition";
-
 
 import signatureRouter from './routes/signatures';
 import petitionRouter from './routes/petition';
@@ -30,15 +25,3 @@ mongoose
   .catch((e) => console.log("db failed", e));
 1;
 
-
-
-
-
-// // user endpoints
-// app.post("/user/login", loginValidation, UserController.login);
-// app.post("/user/register", registerValidation, UserController.register);
-// app.get("/user", UserController.getAllUsers);
-// app.get("/user/:passportId", UserController.getUserByPassportId);
-
-// // petition endpoints
-// app.post("/petition", petitionValidation, PetitionsController.create);

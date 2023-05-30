@@ -11,18 +11,18 @@ import {
 const router = Router();
 
 // GET /api/v1/signature
-router.get('/signature', getSignatures);
+router.get('/api/v1/signature', getSignatures);
 
 // GET /api/v1/signature/:id
-router.get('/signature/:id', getSignatureById);
+router.get('/api/v1/signature/:id', getSignatureById);
 
 // POST /api/v1/signature
-router.post('/signature', createSignature);
+router.post('/api/v1/signature', createSignature);
 
 // DELETE /api/v1/signature/:id
-router.delete('/signature/:id', deleteSignature);
+router.delete('/api/v1/signature/:id', deleteSignature);
 
 // PUT /api/v1/signature/:id
-router.put('/signature/:id', updateSignature);
+router.put('/api/v1/signature/:id', updateSignature);
 
 export default router;

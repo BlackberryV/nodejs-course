@@ -27,4 +27,5 @@ const PetitionSchema = new mongoose.Schema({
   ],
 });
 
+
 export const PetitionModel = mongoose.model("Petition", PetitionSchema);
