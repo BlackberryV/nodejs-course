@@ -1,53 +1,30 @@
-import {Signature} from "./Signature";
+import mongoose from "mongoose";
 
-export class Petition {
+const PetitionSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  text: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  requiredSignatures: {
+    type: Number,
+    required: true,
+  },
+  creator: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  usersSigntures: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+});
 
-    private title: string;
-    private description: string;
-    private signatures: Signature[];
-    private requiredAmountOfSignatures: number;
-
-    private id: number;
-    private static idGenerator=0;
-
-    constructor(
-
-        title: string,
-        description: string,
-        requiredAmountOfSignatures: number
-    ) {
-
-        this.id = Petition.idGenerator;
-        this.title = title;
-        this.description = description;
-        this.signatures = [];
-        this.requiredAmountOfSignatures = requiredAmountOfSignatures;
-        Petition.idGenerator=Petition.idGenerator+1;
-    }
-
-    get getTitle(): string {
-        return this.title;
-    }
-
-    get getDescription(): string {
-        return this.description;
-    }
-
-    get getSignatures(): Signature[] {
-        return this.signatures;
-    }
-
-    get getRequiredAmountOfSignatures(): number {
-        return this.requiredAmountOfSignatures;
-    }
-
-    get getId(): number {
-        return this.id;
-    }
-
-    addSignature(signature: Signature): void {
-        this.signatures.push(signature);
-    }
-
-
-}
+export const PetitionModel = mongoose.model("Petition", PetitionSchema);

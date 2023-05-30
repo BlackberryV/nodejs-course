@@ -1,21 +1,30 @@
-export class User {
-  private name: string;
-  private email: string;
+import mongoose from "mongoose";
 
+const UserSchema = new mongoose.Schema({
+  fullname: {
+    type: String,
+    required: true,
+  },
+  passportId: {
+    type: Number,
+    required: true,
+    unique: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  petitions: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Petition",
+    },
+  ],
+});
 
-  constructor(name: string, email: string) {
-    this.name = name;
-    this.email = email;
-
-  }
-
-  get getName(): string {
-    return this.name;
-  }
-
-  get getEmail(): string {
-    return this.email;
-  }
-
-
-}
+export const UserModel = mongoose.model("User", UserSchema);
