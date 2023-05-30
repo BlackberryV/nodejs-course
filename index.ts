@@ -5,12 +5,20 @@ import * as PetitionsController from "./controllers/petition";
 import { loginValidation, registerValidation } from "./validations/auth";
 import { petitionValidation } from "./validations/petition";
 
+
+import signatureRouter from './routes/signatures';
+import petitionRouter from './routes/petition';
+import userRouter from './routes/user';
+
 const app = express();
 
 const port = 5001;
 const db = "mongodb+srv://node:node@nodejs-course.85duhz1.mongodb.net/";
 
 app.use(express.json());
+app.use(signatureRouter);
+app.use(userRouter);
+app.use(petitionRouter);
 
 app.listen(port, () => {
   console.log(`Timezones by location application is running on port ${port}.`);
@@ -22,11 +30,15 @@ mongoose
   .catch((e) => console.log("db failed", e));
 1;
 
-// user endpoints
-app.post("/user/login", loginValidation, UserController.login);
-app.post("/user/register", registerValidation, UserController.register);
-app.get("/user", UserController.getAllUsers);
-app.get("/user/:passportId", UserController.getUserByPassportId);
 
-// petition endpoints
-app.post("/petition", petitionValidation, PetitionsController.create);
+
+
+
+// // user endpoints
+// app.post("/user/login", loginValidation, UserController.login);
+// app.post("/user/register", registerValidation, UserController.register);
+// app.get("/user", UserController.getAllUsers);
+// app.get("/user/:passportId", UserController.getUserByPassportId);
+
+// // petition endpoints
+// app.post("/petition", petitionValidation, PetitionsController.create);

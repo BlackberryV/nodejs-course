@@ -19,12 +19,17 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  petitions: [
+  petitions: [ //що він створив
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Petition",
     },
   ],
+signatures: [ //за які проголосував
+  {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Signature",
+  },
+],
 });
-
 export const UserModel = mongoose.model("User", UserSchema);

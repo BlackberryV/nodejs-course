@@ -19,10 +19,10 @@ const PetitionSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
-  usersSigntures: [
+  signatures: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Signature",
     },
   ],
 });
