@@ -1,0 +1,115 @@
+openapi: 3.0.0
+info:
+  title: User API
+  version: 1.0.0
+paths:
+  /api/v1/user/login:
+    post:
+      summary: Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - password
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: User not found
+  /api/v1/user/register:
+    post:
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad request
+  /api/v1/user:
+    get:
+      summary: Get all users
+      responses:
+        '200':
+          description: OK
+  /api/v1/user/{passportId}:
+    get:
+      summary: Get a user by passport ID
+      parameters:
+        - in: path
+          name: passportId
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: User not found
+    put:
+      summary: Update a user by ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad request
+    delete:
+      summary: Delete a user by ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    UserInput:
+      type: object
+      properties:
+        fullname:
+          type: string
+        passportId:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+    User:
+      allOf:
+        - $ref: '#/components/schemas/UserInput'
+        - type: object
+          properties:
+            _id:
+              type: string
+            createdAt:
+              type: string
+            updatedAt:
+              type: string

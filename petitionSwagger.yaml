@@ -1,0 +1,107 @@
+openapi: 3.0.0
+info:
+  title: Petition API
+  version: 1.0.0
+paths:
+  /api/v1/petition:
+    get:
+      summary: Get all petitions
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Create a new petition
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                text:
+                  type: string
+                requiredSignatures:
+                  type: number
+                creator:
+                  type: string
+              required:
+                - title
+                - text
+                - requiredSignatures
+                - creator
+      responses:
+        '201':
+          description: Created
+  /api/v1/petition/{id}:
+    get:
+      summary: Get a petition by ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Petition not found
+    put:
+      summary: Update a petition by ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                text:
+                  type: string
+                requiredSignatures:
+                  type: number
+                creator:
+                  type: string
+              required:
+                - title
+                - text
+                - requiredSignatures
+                - creator
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad request
+    delete:
+      summary: Delete a petition by ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    Petition:
+      type: object
+      properties:
+        title:
+          type: string
+        text:
+          type: string
+        requiredSignatures:
+          type: number
+        creator:
+          type: string

@@ -1,0 +1,88 @@
+openapi: 3.0.0
+info:
+  title: Signatures API
+  version: 1.0.0
+paths:
+  /api/v1/signature:
+    get:
+      summary: Get all signatures
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Create a new signature
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                petitionId:
+                  type: string
+                text:
+                  type: string
+              required:
+                - petitionId
+                - text
+      responses:
+        '201':
+          description: Created
+  /api/v1/signature/{id}:
+    get:
+      summary: Get a signature by ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Signature not found
+    put:
+      summary: Update a signature by ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+              required:
+                - text
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad request
+    delete:
+      summary: Delete a signature by ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    Signature:
+      type: object
+      properties:
+        petitionId:
+          type: string
+        text:
+          type: string
